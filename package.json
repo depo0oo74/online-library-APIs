@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "backend development for online library website and portal admin",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon app.js"
   },

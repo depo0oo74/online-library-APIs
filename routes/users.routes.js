@@ -1,20 +1,20 @@
-const express = require("express")
-const router = express.Router()
-const usersController = require("../controllers/users.controller")
+import express from "express";
+const router = express.Router();
+import { getAllUsers, getSpecificUser, createUser, updateUser, deleteUser } from "../controllers/users.controller.js";
 
 // ** get all users
-router.get("/api/users", usersController.getAllUsers)
+router.get("/api/users", getAllUsers);
 
 // ** get specific user
-router.get("/api/users/:userId", usersController.getSpecificUser)
+router.get("/api/users/:userId", getSpecificUser);
 
 // ** update specific user
-router.put("/api/users/:userId", express.json({extended: true}), usersController.updateUser)
+router.put("/api/users/:userId", express.json({ extended: true }), updateUser);
 
 // ** create a new user
-router.post("/api/users", express.json({extended: true}), usersController.createUser)
+router.post("/api/users", express.json({ extended: true }), createUser);
 
 // ** delete specific user
-router.delete("/api/users/:userId", usersController.deleteUser)
+router.delete("/api/users/:userId", deleteUser);
 
-module.exports = router
+export default router;

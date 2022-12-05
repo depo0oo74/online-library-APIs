@@ -1,11 +1,11 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 const faqSchema = mongoose.Schema({
-    question: String,
-    answer: String,
-    dateOfCreation: {type: Date, default: Date.now()}
-})
+  question: String,
+  answer: String,
+  dateOfCreation: { type: Date, default: Date.now() },
+});
 
-const faq = mongoose.model("faq", faqSchema)
+const faq = mongoose.model("faq", faqSchema);
 
-module.exports = faq
+export default faq;

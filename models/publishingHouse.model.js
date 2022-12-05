@@ -1,10 +1,10 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 const publishingHousesSchema = mongoose.Schema({
-    name: String,
-    dateOfCreation: {type: Date, default: Date.now()}
-})
+  name: String,
+  dateOfCreation: { type: Date, default: Date.now() },
+});
 
-const publishing_house = mongoose.model("publishing_house", publishingHousesSchema)
+const publishing_house = mongoose.model("publishing_house", publishingHousesSchema);
 
-module.exports = publishing_house
+export default publishing_house;

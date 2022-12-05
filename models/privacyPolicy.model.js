@@ -1,11 +1,11 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 const privacyPolicySchema = mongoose.Schema({
-    title: String,
-    content: String,
-    dateOfCreation: {type: Date, default: Date.now()}
-})
+  title: String,
+  content: String,
+  dateOfCreation: { type: Date, default: Date.now() },
+});
 
-const privacy_policy = mongoose.model("privacy_policy", privacyPolicySchema)
+const privacy_policy = mongoose.model("privacy_policy", privacyPolicySchema);
 
-module.exports = privacy_policy
+export default privacy_policy;

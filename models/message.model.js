@@ -1,11 +1,11 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 const messageSchema = mongoose.Schema({
-    title: String,
-    content: String,
-    dateOfCreation: {type: Date, default: Date.now()}
-})
+  title: String,
+  content: String,
+  dateOfCreation: { type: Date, default: Date.now() },
+});
 
-const message = mongoose.model("message", messageSchema)
+const message = mongoose.model("message", messageSchema);
 
-module.exports = message
+export default message;

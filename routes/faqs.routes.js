@@ -1,20 +1,20 @@
-const express = require("express")
-const router = express.Router()
-const faqsController = require("../controllers/faqs.controller")
+import express from "express";
+const router = express.Router();
+import { getAllFaqs, getSpecificFaq, updateFaq, createFaq, deleteFaq } from "../controllers/faqs.controller.js";
 
 // ** get all faqs
-router.get("/api/faqs", faqsController.getAllFaqs)
+router.get("/api/faqs", getAllFaqs);
 
 // ** get specific faq
-router.get("/api/faqs/:faqId", faqsController.getSpecificFaq)
+router.get("/api/faqs/:faqId", getSpecificFaq);
 
 // ** update specific faq
-router.put("/api/faqs/:faqId", express.json({extended: true}), faqsController.updateFaq)
+router.put("/api/faqs/:faqId", express.json({ extended: true }), updateFaq);
 
 // ** create a new faq
-router.post("/api/faqs", express.json({extended: true}), faqsController.createFaq)
+router.post("/api/faqs", express.json({ extended: true }), createFaq);
 
 // ** delete specific faq
-router.delete("/api/faqs/:faqId", faqsController.deleteFaq)
+router.delete("/api/faqs/:faqId", deleteFaq);
 
-module.exports = router
+export default router;

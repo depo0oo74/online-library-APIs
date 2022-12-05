@@ -1,10 +1,10 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 const sectionSchema = mongoose.Schema({
-    name: String,
-    dateOfCreation: {type: Date, default: Date.now()}
-})
+  name: String,
+  dateOfCreation: { type: Date, default: Date.now() },
+});
 
-const section = mongoose.model("section", sectionSchema)
+const section = mongoose.model("section", sectionSchema);
 
-module.exports = section
+export default section;

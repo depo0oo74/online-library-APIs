@@ -1,22 +1,22 @@
 // ** require express
-const express = require("express");
+import express from "express";
 const app = express();
 
 // ** require and enable CORS
-const cors = require("cors");
+import cors from "cors";
 app.use(cors());
 
-// ** require database
-require("./database");
+// ** import database
+import "./database.js";
 
-// ** require routes
-const usersRoutes = require("./routes/users.routes");
-const sectionsRoutes = require("./routes/sections.routes");
-const publishingHousesRoutes = require("./routes/publishingHouses.routes");
-const faqsRoutes = require("./routes/faqs.routes");
-const messagesRoutes = require("./routes/messages.routes");
-const porivacyPolisysRoutes = require("./routes/privacyPolicys.routes");
-const productsRoutes = require("./routes/products.routes");
+// ** import routes
+import usersRoutes from "./routes/users.routes.js";
+import sectionsRoutes from "./routes/sections.routes.js";
+import publishingHousesRoutes from "./routes/publishingHouses.routes.js";
+import faqsRoutes from "./routes/faqs.routes.js";
+import messagesRoutes from "./routes/messages.routes.js";
+import privacyPolicesRoutes from "./routes/privacyPolicys.routes.js";
+import productsRoutes from "./routes/products.routes.js";
 
 // ** use routes
 app.use(usersRoutes);
@@ -24,7 +24,7 @@ app.use(sectionsRoutes);
 app.use(publishingHousesRoutes);
 app.use(faqsRoutes);
 app.use(messagesRoutes);
-app.use(porivacyPolisysRoutes);
+app.use(privacyPolicesRoutes);
 app.use(productsRoutes);
 
 // ** port to run
