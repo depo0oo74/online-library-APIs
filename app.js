@@ -31,4 +31,6 @@ app.use(productsRoutes);
 const PORT = 5000;
 
 // ** listen app on specific port
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`The app is running now on port ${PORT}`);
+});
