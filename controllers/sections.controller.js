@@ -14,11 +14,15 @@ export const getAllSections = async (req, res, next) => {
 export const getSpecificSection = async (req, res, next) => {
   const sectionId = req.params.sectionId;
   if (!objectId.isValid(sectionId)) {
-    return res.status(400).send("section Id is wrong format");
+    return res.status(400).send({
+      message: "section Id is wrong format",
+    });
   }
   const specificSection = await sectionModel.findById(sectionId);
   if (!specificSection) {
-    return res.status(400).send("this section dose not exist");
+    return res.status(400).send({
+      message: "this section dose not exist",
+    });
   }
   res.status(200).send({
     data: specificSection,
@@ -29,7 +33,9 @@ export const getSpecificSection = async (req, res, next) => {
 export const createSection = async (req, res, next) => {
   const isSection = await sectionModel.findOne({ name: req.body.name });
   if (isSection) {
-    return res.status(400).send("this section already exist");
+    return res.status(400).send({
+      message: "this section already exist",
+    });
   }
   await sectionModel.create({
     name: req.body.name,
@@ -45,11 +51,15 @@ export const createSection = async (req, res, next) => {
 export const updateSection = async (req, res, next) => {
   const sectionId = req.params.sectionId;
   if (!objectId.isValid(sectionId)) {
-    return res.status(400).send("section Id is wrong format");
+    return res.status(400).send({
+      message: "section Id is wrong format",
+    });
   }
   const specificSection = await sectionModel.findById(sectionId);
   if (!specificSection) {
-    return res.status(400).send("this section dose not exist");
+    return res.status(400).send({
+      message: "this section dose not exist",
+    });
   }
   await sectionModel.updateOne(specificSection, {
     name: req.body.name,
@@ -65,12 +75,18 @@ export const updateSection = async (req, res, next) => {
 export const deleteSection = async (req, res, next) => {
   const sectionId = req.params.sectionId;
   if (!objectId.isValid(sectionId)) {
-    return res.status(400).send("section Id is wrong format");
+    return res.status(400).send({
+      message: "section Id is wrong format",
+    });
   }
   const specificSection = await sectionModel.findById(sectionId);
   if (!specificSection) {
-    return res.status(400).send("this section dose not exist");
+    return res.status(400).send({
+      message: "this section dose not exist",
+    });
   }
   await sectionModel.deleteOne(specificSection);
-  res.status(200).send("section deleted successfully");
+  res.status(200).send({
+    message: "section deleted successfully",
+  });
 };

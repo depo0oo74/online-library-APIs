@@ -14,11 +14,15 @@ export const getAllMessages = async (req, res, next) => {
 export const getSpecificMessage = async (req, res, next) => {
   const messageId = req.params.messageId;
   if (!objectId.isValid(messageId)) {
-    return res.status(400).send("message Id is wrong format");
+    return res.status(400).send({
+      message: "message Id is wrong format",
+    });
   }
   const specificMessage = await messageModel.findById(messageId);
   if (!specificMessage) {
-    return res.status(400).send("this message dose not exist");
+    return res.status(400).send({
+      message: "this message dose not exist",
+    });
   }
   res.status(200).send({
     data: specificMessage,
@@ -43,11 +47,15 @@ export const createMessage = async (req, res, next) => {
 export const updateMessage = async (req, res, next) => {
   const messageId = req.params.messageId;
   if (!objectId.isValid(messageId)) {
-    return res.status(400).send("message Id is wrong format");
+    return res.status(400).send({
+      message: "message Id is wrong format",
+    });
   }
   const specificMessage = await messageModel.findById(messageId);
   if (!specificMessage) {
-    return res.status(400).send("this message dose not exist");
+    return res.status(400).send({
+      message: "this message dose not exist",
+    });
   }
   await messageModel.updateOne(specificMessage, {
     title: req.body.title,
@@ -65,12 +73,18 @@ export const updateMessage = async (req, res, next) => {
 export const deleteMessage = async (req, res, next) => {
   const messageId = req.params.messageId;
   if (!objectId.isValid(messageId)) {
-    return res.status(400).send("message Id is wrong format");
+    return res.status(400).send({
+      message: "message Id is wrong format",
+    });
   }
   const specificMessage = await messageModel.findById(messageId);
   if (!specificMessage) {
-    return res.status(400).send("this message dose not exist");
+    return res.status(400).send({
+      message: "this message dose not exist",
+    });
   }
   await messageModel.deleteOne(specificMessage);
-  res.status(200).send("message deleted successfully");
+  res.status(200).send({
+    message: "message deleted successfully",
+  });
 };

@@ -14,11 +14,15 @@ export const getAllPrivacyPolicys = async (req, res, next) => {
 export const getSpecificPrivacyPolicy = async (req, res, next) => {
   const privacyPolicyId = req.params.privacyPolicyId;
   if (!objectId.isValid(privacyPolicyId)) {
-    return res.status(400).send("privacy policy Id is wrong format");
+    return res.status(400).send({
+      message: "privacy policy Id is wrong format",
+    });
   }
   const specificPrivacyPolicy = await privacyPolicyModel.findById(privacyPolicyId);
   if (!specificPrivacyPolicy) {
-    return res.status(400).send("this privacy policy dose not exist");
+    return res.status(400).send({
+      message: "this privacy policy dose not exist",
+    });
   }
   res.status(200).send({
     data: specificPrivacyPolicy,
@@ -43,11 +47,15 @@ export const createPrivacyPolicy = async (req, res, next) => {
 export const updatePrivacyPolicy = async (req, res, next) => {
   const privacyPolicyId = req.params.privacyPolicyId;
   if (!objectId.isValid(privacyPolicyId)) {
-    return res.status(400).send("privacy policy Id is wrong format");
+    return res.status(400).send({
+      message: "privacy policy Id is wrong format",
+    });
   }
   const specificPrivacyPolicy = await privacyPolicyModel.findById(privacyPolicyId);
   if (!specificPrivacyPolicy) {
-    return res.status(400).send("this privacy policy dose not exist");
+    return res.status(400).send({
+      message: "this privacy policy dose not exist",
+    });
   }
   await privacyPolicyModel.updateOne(specificPrivacyPolicy, {
     title: req.body.title,
@@ -65,12 +73,18 @@ export const updatePrivacyPolicy = async (req, res, next) => {
 export const deletePrivacyPolicy = async (req, res, next) => {
   const privacyPolicyId = req.params.privacyPolicyId;
   if (!objectId.isValid(privacyPolicyId)) {
-    return res.status(400).send("privacy policy Id is wrong format");
+    return res.status(400).send({
+      message: "privacy policy Id is wrong format",
+    });
   }
   const specificPrivacyPolicy = await privacyPolicyModel.findById(privacyPolicyId);
   if (!specificPrivacyPolicy) {
-    return res.status(400).send("this privacy policy dose not exist");
+    return res.status(400).send({
+      message: "this privacy policy dose not exist",
+    });
   }
   await privacyPolicyModel.deleteOne(specificPrivacyPolicy);
-  res.status(200).send("privacy policy deleted successfully");
+  res.status(200).send({
+    message: "privacy policy deleted successfully",
+  });
 };

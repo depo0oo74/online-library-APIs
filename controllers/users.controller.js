@@ -14,11 +14,15 @@ export const getAllUsers = async (req, res, next) => {
 export const getSpecificUser = async (req, res, next) => {
   const userId = req.params.userId;
   if (!objectId.isValid(userId)) {
-    return res.status(400).send("user Id is wrong format");
+    return res.status(400).send({
+      message: "user Id is wrong format",
+    });
   }
   const specificUser = await userModel.findById(userId);
   if (!specificUser) {
-    return res.status(400).send("this user dose not exist");
+    return res.status(400).send({
+      message: "this user dose not exist",
+    });
   }
   res.status(200).send({
     data: specificUser,
@@ -29,7 +33,9 @@ export const getSpecificUser = async (req, res, next) => {
 export const createUser = async (req, res, next) => {
   const isUser = await userModel.findOne({ email: req.body.email });
   if (isUser) {
-    return res.status(400).send("this user already exist");
+    return res.status(400).send({
+      message: "this user already exist",
+    });
   }
   await userModel.create({
     username: req.body.username,
@@ -51,11 +57,15 @@ export const createUser = async (req, res, next) => {
 export const updateUser = async (req, res, next) => {
   const userId = req.params.userId;
   if (!objectId.isValid(userId)) {
-    return res.status(400).send("user Id is wrong format");
+    return res.status(400).send({
+      message: "user Id is wrong format",
+    });
   }
   const specificUser = await userModel.findById(userId);
   if (!specificUser) {
-    return res.status(400).send("this user dose not exist");
+    return res.status(400).send({
+      message: "this user dose not exist",
+    });
   }
   await userModel.updateOne(specificUser, {
     username: req.body.username,
@@ -77,12 +87,18 @@ export const updateUser = async (req, res, next) => {
 export const deleteUser = async (req, res, next) => {
   const userId = req.params.userId;
   if (!objectId.isValid(userId)) {
-    return res.status(400).send("user Id is wrong format");
+    return res.status(400).send({
+      message: "user Id is wrong format",
+    });
   }
   const specificUser = await userModel.findById(userId);
   if (!specificUser) {
-    return res.status(400).send("this user dose not exist");
+    return res.status(400).send({
+      message: "this user dose not exist",
+    });
   }
   await userModel.deleteOne(specificUser);
-  res.status(200).send("user deleted successfully");
+  res.status(200).send({
+    message: "user deleted successfully",
+  });
 };

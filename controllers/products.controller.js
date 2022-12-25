@@ -14,11 +14,15 @@ export const getAllProducts = async (req, res, next) => {
 export const getSpecificProduct = async (req, res, next) => {
   const productId = req.params.productId;
   if (!objectId.isValid(productId)) {
-    return res.status(400).send("product Id is wrong format");
+    return res.status(400).send({
+      message: "product Id is wrong format",
+    });
   }
   const specificProduct = await productModel.findById(productId);
   if (!specificProduct) {
-    return res.status(400).send("this product dose not exist");
+    return res.status(400).send({
+      message: "this product dose not exist",
+    });
   }
   res.status(200).send({
     data: specificProduct,
@@ -65,11 +69,15 @@ export const createProduct = async (req, res, next) => {
 export const updateProduct = async (req, res, next) => {
   const productId = req.params.productId;
   if (!objectId.isValid(productId)) {
-    return res.status(400).send("product Id is wrong format");
+    return res.status(400).send({
+      message: "product Id is wrong format",
+    });
   }
   const specificProduct = await productModel.findById(productId);
   if (!specificProduct) {
-    return res.status(400).send("this product dose not exist");
+    return res.status(400).send({
+      message: "this product dose not exist",
+    });
   }
   await productModel.updateOne(specificProduct, {
     name: req.body.name,
@@ -109,12 +117,18 @@ export const updateProduct = async (req, res, next) => {
 export const deleteProduct = async (req, res, next) => {
   const productId = req.params.productId;
   if (!objectId.isValid(productId)) {
-    return res.status(400).send("product Id is wrong format");
+    return res.status(400).send({
+      message: "product Id is wrong format",
+    });
   }
   const specificProduct = await productModel.findById(productId);
   if (!specificProduct) {
-    return res.status(400).send("this product dose not exist");
+    return res.status(400).send({
+      message: "this product dose not exist",
+    });
   }
   await productModel.deleteOne(specificProduct);
-  res.status(200).send("product deleted successfully");
+  res.status(200).send({
+    message: "product deleted successfully",
+  });
 };

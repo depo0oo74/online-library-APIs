@@ -14,11 +14,15 @@ export const getAllPublishingHouses = async (req, res, next) => {
 export const getSpecificPublishingHouse = async (req, res, next) => {
   const publishingHouseId = req.params.publishingHouseId;
   if (!objectId.isValid(publishingHouseId)) {
-    return res.status(400).send("publishing House Id is wrong format");
+    return res.status(400).send({
+      message: "publishing House Id is wrong format",
+    });
   }
   const specificPublishingHouse = await publishingHouseModel.findById(publishingHouseId);
   if (!specificPublishingHouse) {
-    return res.status(400).send("this publishing house dose not exist");
+    return res.status(400).send({
+      message: "this publishing house dose not exist",
+    });
   }
   res.status(200).send({
     data: specificPublishingHouse,
@@ -29,7 +33,9 @@ export const getSpecificPublishingHouse = async (req, res, next) => {
 export const createPublishingHouse = async (req, res, next) => {
   const isFaq = await publishingHouseModel.findOne({ name: req.body.name });
   if (isFaq) {
-    return res.status(400).send("this faq already exist");
+    return res.status(400).send({
+      message: "this faq already exist",
+    });
   }
   await publishingHouseModel.create({
     name: req.body.name,
@@ -45,11 +51,15 @@ export const createPublishingHouse = async (req, res, next) => {
 export const updatePublishingHouse = async (req, res, next) => {
   const publishingHouseId = req.params.publishingHouseId;
   if (!objectId.isValid(publishingHouseId)) {
-    return res.status(400).send("publishing House Id is wrong format");
+    return res.status(400).send({
+      message: "publishing House Id is wrong format",
+    });
   }
   const specificPublishingHouse = await publishingHouseModel.findById(publishingHouseId);
   if (!specificPublishingHouse) {
-    return res.status(400).send("this publishing house dose not exist");
+    return res.status(400).send({
+      message: "this publishing house dose not exist",
+    });
   }
   await publishingHouseModel.updateOne(specificPublishingHouse, {
     name: req.body.name,
@@ -65,12 +75,18 @@ export const updatePublishingHouse = async (req, res, next) => {
 export const deletePublishingHouse = async (req, res, next) => {
   const publishingHouseId = req.params.publishingHouseId;
   if (!objectId.isValid(publishingHouseId)) {
-    return res.status(400).send("publishing House Id is wrong format");
+    return res.status(400).send({
+      message: "publishing House Id is wrong format",
+    });
   }
   const specificPublishingHouse = await publishingHouseModel.findById(publishingHouseId);
   if (!specificPublishingHouse) {
-    return res.status(400).send("this publishing house dose not exist");
+    return res.status(400).send({
+      message: "this publishing house dose not exist",
+    });
   }
   await publishingHouseModel.deleteOne(specificPublishingHouse);
-  res.status(200).send("publishing house deleted successfully");
+  res.status(200).send({
+    message: "publishing house deleted successfully",
+  });
 };
