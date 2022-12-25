@@ -5,6 +5,7 @@ const userSchema = mongoose.Schema({
   email: String,
   phoneNumber: Number,
   password: String,
+  cpassword: String,
   role: { type: String, default: "client" },
   dateOfJoin: { type: Date, default: Date.now() },
 });

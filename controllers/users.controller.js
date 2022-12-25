@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 const objectId = mongoose.Types.ObjectId;
 import userModel from "../models/user.model.js";
 
@@ -37,10 +38,18 @@ export const createUser = async (req, res, next) => {
       message: "this user already exist",
     });
   }
+  if (req.body.password !== req.body.cpassword) {
+    return res.status(400).send({
+      message: "Passwords do not match",
+    });
+  }
+  const encryptedPassword = bcrypt.hashSync(req.body.password, 10);
   await userModel.create({
     username: req.body.username,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
+    password: encryptedPassword,
+    role: req.body.role,
   });
   res.status(200).send({
     data: {
@@ -65,18 +74,19 @@ export const updateUser = async (req, res, next) => {
       message: "this user dose not exist",
     });
   }
+  const encryptedPassword = bcrypt.hashSync(req.body.password, 10);
   await userModel.updateOne(specificUser, {
     username: req.body.username,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
-    password: req.body.phoneNumber,
+    password: encryptedPassword,
+    role: req.body.role,
   });
   res.status(200).send({
     data: {
       username: req.body.username,
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
-      password: req.body.phoneNumber,
     },
   });
 };
