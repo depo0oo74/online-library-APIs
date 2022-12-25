@@ -3,18 +3,18 @@ const router = express.Router();
 import { getAllProducts, getSpecificProduct, updateProduct, createProduct, deleteProduct } from "../controllers/products.controller.js";
 
 // ** get all products
-router.get("/api/products", getAllProducts);
+router.get("/api/v1/products", getAllProducts);
 
 // ** get specific product
-router.get("/api/products/:productId", getSpecificProduct);
+router.get("/api/v1/products/:productId", getSpecificProduct);
 
 // ** update specific product
-router.put("/api/products/:productId", express.json({ extended: true }), updateProduct);
+router.put("/api/v1/products/:productId", express.json({ extended: true }), updateProduct);
 
 // ** create a new product
-router.post("/api/products", express.json({ extended: true }), createProduct);
+router.post("/api/v1/products", express.json({ extended: true }), createProduct);
 
 // ** delete specific product
-router.delete("/api/products/:productId", deleteProduct);
+router.delete("/api/v1/products/:productId", deleteProduct);
 
 export default router;

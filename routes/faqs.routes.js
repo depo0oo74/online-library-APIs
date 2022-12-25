@@ -3,18 +3,18 @@ const router = express.Router();
 import { getAllFaqs, getSpecificFaq, updateFaq, createFaq, deleteFaq } from "../controllers/faqs.controller.js";
 
 // ** get all faqs
-router.get("/api/faqs", getAllFaqs);
+router.get("/api/v1/faqs", getAllFaqs);
 
 // ** get specific faq
-router.get("/api/faqs/:faqId", getSpecificFaq);
+router.get("/api/v1/faqs/:faqId", getSpecificFaq);
 
 // ** update specific faq
-router.put("/api/faqs/:faqId", express.json({ extended: true }), updateFaq);
+router.put("/api/v1/faqs/:faqId", express.json({ extended: true }), updateFaq);
 
 // ** create a new faq
-router.post("/api/faqs", express.json({ extended: true }), createFaq);
+router.post("/api/v1/faqs", express.json({ extended: true }), createFaq);
 
 // ** delete specific faq
-router.delete("/api/faqs/:faqId", deleteFaq);
+router.delete("/api/v1/faqs/:faqId", deleteFaq);
 
 export default router;

@@ -3,18 +3,18 @@ const router = express.Router();
 import { getAllUsers, getSpecificUser, createUser, updateUser, deleteUser } from "../controllers/users.controller.js";
 
 // ** get all users
-router.get("/api/users", getAllUsers);
+router.get("/api/v1/users", getAllUsers);
 
 // ** get specific user
-router.get("/api/users/:userId", getSpecificUser);
+router.get("/api/v1/users/:userId", getSpecificUser);
 
 // ** update specific user
-router.put("/api/users/:userId", express.json({ extended: true }), updateUser);
+router.put("/api/v1/users/:userId", express.json({ extended: true }), updateUser);
 
 // ** create a new user
-router.post("/api/users", express.json({ extended: true }), createUser);
+router.post("/api/v1/users", express.json({ extended: true }), createUser);
 
 // ** delete specific user
-router.delete("/api/users/:userId", deleteUser);
+router.delete("/api/v1/users/:userId", deleteUser);
 
 export default router;
