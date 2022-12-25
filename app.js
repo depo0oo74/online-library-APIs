@@ -28,7 +28,7 @@ app.use(privacyPolicesRoutes);
 app.use(productsRoutes);
 
 // ** port to run
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // ** listen app on specific port
 app.listen(PORT, () => {
