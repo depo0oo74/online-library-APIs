@@ -41,14 +41,12 @@ export const createUser = async (req, res, next) => {
     username: req.body.username,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
-    password: req.body.phoneNumber,
   });
   res.status(200).send({
     data: {
       username: req.body.username,
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
-      password: req.body.phoneNumber,
     },
   });
 };
