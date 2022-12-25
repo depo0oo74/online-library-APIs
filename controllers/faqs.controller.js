@@ -14,7 +14,9 @@ export const getAllFaqs = async (req, res, next) => {
 export const getSpecificFaq = async (req, res, next) => {
   const faqId = req.params.faqId;
   if (!objectId.isValid(faqId)) {
-    return res.status(400).send("faq Id is wrong format");
+    return res.status(400).send({
+      message: "faq Id is wrong format",
+    });
   }
   const specificFaq = await faqModel.findById(faqId);
   if (!specificFaq) {
