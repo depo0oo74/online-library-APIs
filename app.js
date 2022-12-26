@@ -17,6 +17,8 @@ import faqsRoutes from "./routes/faqs.routes.js";
 import messagesRoutes from "./routes/messages.routes.js";
 import privacyPolicesRoutes from "./routes/privacyPolicys.routes.js";
 import productsRoutes from "./routes/products.routes.js";
+import authRoutes from "./routes/auth.routes.js";
+import goalsRoutes from "./routes/goals.routes.js";
 
 // ** use routes
 app.use(usersRoutes);
@@ -26,6 +28,8 @@ app.use(faqsRoutes);
 app.use(messagesRoutes);
 app.use(privacyPolicesRoutes);
 app.use(productsRoutes);
+app.use(authRoutes);
+app.use(goalsRoutes);
 
 // ** port to run
 const PORT = process.env.PORT || 5000;

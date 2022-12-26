@@ -12,7 +12,7 @@ router.get("/api/v1/messages/:messageId", getSpecificMessage);
 router.put("/api/v1/messages/:messageId", express.json({ extended: true }), updateMessage);
 
 // ** create a new message
-router.post("/api/v1/messages", express.json({ extended: true }), createMessage);
+router.post("/api/v1/messages", express.json({ extended: true }), isAdminUser, createMessage);
 
 // ** delete specific message
 router.delete("/api/v1/messages/:messageId", deleteMessage);
