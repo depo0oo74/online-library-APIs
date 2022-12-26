@@ -77,12 +77,21 @@ export const isAdminUser = async (req, res, next) => {
 
 // ** Is NOT USER controller
 export const isNotUser = async (req, res, next) => {
-  const accessToken = req.headers?.authorization?.split(" ")[1];
-  if (accessToken) {
-    res.status(400).send({
-      message: "User already Authorized",
+  try {
+    const accessToken = req.headers?.authorization?.split(" ")[1];
+    if (accessToken) {
+      const userPayload = JWT.verify(accessToken, JwtSecret, { complete: true });
+      if (userPayload) {
+        res.status(400).send({
+          message: "User already Authorized",
+        });
+      }
+    } else {
+      next();
+    }
+  } catch (err) {
+    res.status(401).send({
+      message: "Invalid Token",
     });
-  } else {
-    next();
   }
 };
