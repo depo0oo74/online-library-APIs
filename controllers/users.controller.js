@@ -49,6 +49,7 @@ export const createUser = async (req, res, next) => {
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
     password: encryptedPassword,
+    addresses: req.body.addresses,
     role: req.body.role,
   });
   res.status(200).send({
@@ -56,6 +57,7 @@ export const createUser = async (req, res, next) => {
       username: req.body.username,
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
+      addresses: req.body.addresses,
     },
   });
 };
@@ -80,6 +82,7 @@ export const updateUser = async (req, res, next) => {
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
     password: encryptedPassword,
+    addresses: req.body.addresses,
     role: req.body.role,
   });
   res.status(200).send({
@@ -87,6 +90,7 @@ export const updateUser = async (req, res, next) => {
       username: req.body.username,
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
+      addresses: req.body.addresses,
     },
   });
 };

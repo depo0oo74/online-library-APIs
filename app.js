@@ -2,7 +2,7 @@
 import express from "express";
 const app = express();
 
-// ** require and enable CORS
+// ** import and enable CORS
 import cors from "cors";
 app.use(cors());
 
@@ -19,6 +19,7 @@ import privacyPolicesRoutes from "./routes/privacyPolicys.routes.js";
 import productsRoutes from "./routes/products.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import goalsRoutes from "./routes/goals.routes.js";
+import slidersRoutes from "./routes/sliders.routes.js";
 
 // ** use routes
 app.use(usersRoutes);
@@ -30,6 +31,14 @@ app.use(privacyPolicesRoutes);
 app.use(productsRoutes);
 app.use(authRoutes);
 app.use(goalsRoutes);
+app.use(slidersRoutes);
+
+app.post("/yousef", express.json({ extended: true }), (req, res, next) => {
+  console.log(req.body);
+  res.status(200).send({
+    message: "request sent successfully",
+  });
+});
 
 // ** port to run
 const PORT = process.env.PORT || 5000;
