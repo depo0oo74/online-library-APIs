@@ -33,13 +33,6 @@ app.use(authRoutes);
 app.use(goalsRoutes);
 app.use(slidersRoutes);
 
-app.post("/yousef", express.json({ extended: true }), (req, res, next) => {
-  console.log(req.body);
-  res.status(200).send({
-    message: "request sent successfully",
-  });
-});
-
 // ** port to run
 const PORT = process.env.PORT || 5000;
 
