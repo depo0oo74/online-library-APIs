@@ -17,14 +17,14 @@ export const login = async (req, res, next) => {
       message: "password is incorrect",
     });
   }
-  // const accessToken = JWT.sign({ username: user.username, email: user.email, phoneNumber: user.phoneNumber }, JwtSecret, { expiresIn: 3000 });
   const accessToken = JWT.sign({ user }, JwtSecret, { expiresIn: 3000 });
-
-  return res.status(200).send({
-    username: user.username,
-    email: user.email,
-    phoneNumber: "0" + user.phoneNumber,
-    accessToken,
+  return res.status(200).send({ 
+    data: {
+      username: user.username,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      accessToken,
+    }
   });
 };
 
