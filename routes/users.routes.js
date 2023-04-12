@@ -16,6 +16,6 @@ router.put("/api/v1/users/:userId", express.json({ extended: true }), updateUser
 router.post("/api/v1/users", express.json({ extended: true }), createUser);
 
 // ** delete specific user
-router.delete("/api/v1/users/:userId", isAdminUser, deleteUser);
+router.delete("/api/v1/users/:userId", deleteUser);
 
 export default router;
